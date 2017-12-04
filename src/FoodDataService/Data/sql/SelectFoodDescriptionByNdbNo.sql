@@ -1,0 +1,1 @@
+SELECT * FROM food_des WHERE ndb_no = @ndb_no
