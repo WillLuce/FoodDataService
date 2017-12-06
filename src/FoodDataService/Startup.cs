@@ -3,7 +3,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FoodDataService.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,12 +21,13 @@ namespace FoodDataService
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRouting();
 
             return ConfigureAutoFac(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseMvc();
         }
@@ -37,6 +37,8 @@ namespace FoodDataService
             var builder = new ContainerBuilder();
 
             services.AddSingleton<FoodData>();
+
+            builder.Populate(services);
 
             return new AutofacServiceProvider(builder.Build());
         }

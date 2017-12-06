@@ -17,10 +17,10 @@ namespace FoodDataService.Tests.Data
                 FoodDescription = db.Query<FoodDescription>($@"
                     INSERT INTO food_des
                     (
-                        [ndb_no], [fdgrp_cd], [long_desc], [shrt_desc],
-                        [comname], [manufacname], [survey], [ref_desc],
-                        [refuse], [sciname], [n_factor], [pro_factor],
-                        [fat_factor], [cho_factor]
+                        ndb_no, fdgrp_cd, long_desc, shrt_desc,
+                        comname, manufacname, survey, ref_desc,
+                        refuse, sciname, n_factor, pro_factor,
+                        fat_factor, cho_factor
                     )
                     VALUES
                     (
@@ -29,7 +29,7 @@ namespace FoodDataService.Tests.Data
                         12, 'Scientificus Namus', 4.3, 5.2,
                         1.2, 3.4
                     )
-                ").First();
+                ").FirstOrDefault();
             }
         }
 

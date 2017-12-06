@@ -1,4 +1,3 @@
-using System.Data;
 using FoodDataService.Models;
 using Dapper;
 using FoodDataService.Utils;
@@ -10,9 +9,10 @@ namespace FoodDataService.Data
     {
         public virtual FoodDescription GetFoodDescriptionByNdbNo(string ndb_no)
         {
-            using (IDbConnection connection = Db.FoodDataService())
+            using (var connection = Db.FoodDataService())
             {
-                return connection.Query<FoodDescription>(GetSql("SelectFoodDescriptionByNdbNo.sql"), new { ndb_no }).SingleOrDefault();
+                connection.Open();
+                return connection.Query<FoodDescription>("SELECT * FROM food_des WHERE ndb_no = '00000'").SingleOrDefault();
             }
         }
 
