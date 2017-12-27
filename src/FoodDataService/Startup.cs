@@ -1,16 +1,19 @@
 ﻿using System;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using FoodDataService.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace FoodDataService
 {
     public class Startup
     {
-        public static IConfiguration Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         public Startup(IConfiguration configuration)
         {
@@ -18,33 +21,21 @@ namespace FoodDataService
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddRouting();
-
-            return ConfigureAutoFac(services);
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseMvc();
-        }
-
-        private IServiceProvider ConfigureAutoFac(IServiceCollection services)
-        {
-            var builder = new ContainerBuilder();
-
-            services.AddSingleton<FoodData>();
-
-            builder.Populate(services);
-
-            return new AutofacServiceProvider(builder.Build());
-        }
-
-        public void Cleanup()
-        {
         }
     }
 }
