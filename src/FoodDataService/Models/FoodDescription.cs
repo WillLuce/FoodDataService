@@ -5,26 +5,26 @@ namespace FoodDataService.Models
     public class FoodDescription
     {
         [Key]
-        public char NdbNo { get; set; }
+        public string ndb_no { get; set; }
 
         [Required]
-        public char FdgrpCd { get; set; }
+        public string fdgrp_cd { get; set; }
 
         [Required]
-        public char LongDesc { get; set; }
+        public string long_desc { get; set; }
 
         [Required]
-        public char ShrtDesc { get; set; }
+        public string shrt_desc { get; set; }
 
-        public char? Comname { get; set; }
-        public char? Manufacname { get; set; }
-        public char? Survey { get; set; }
-        public char? RefDesc { get; set; }
-        public decimal? Refuse { get; set; }
-        public char? Sciname { get; set; }
-        public decimal? NFactor { get; set; }
-        public decimal? ProFactor { get; set; }
-        public decimal? FatFactor { get; set; }
-        public decimal? ChoFactor { get; set; }
+        public string comname { get; set; }
+        public string manufacname { get; set; }
+        public string survey { get; set; }
+        public string refdesc { get; set; }
+        public decimal? refuse { get; set; }
+        public char? sciname { get; set; }
+        public decimal? n_factor { get; set; }
+        public decimal? pro_factor { get; set; }
+        public decimal? fat_factor { get; set; }
+        public decimal? cho_factor { get; set; }
     }
 }
