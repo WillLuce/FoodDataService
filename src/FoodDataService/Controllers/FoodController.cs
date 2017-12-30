@@ -1,6 +1,5 @@
 ﻿using FoodDataService.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace FoodDataService.Controllers
 {
@@ -9,7 +8,7 @@ namespace FoodDataService.Controllers
     {
         private readonly FoodDataRepository _foodData;
 
-        public FoodController(IConfiguration configuration)
+        public FoodController()
         {
             _foodData = new FoodDataRepository();
         }
