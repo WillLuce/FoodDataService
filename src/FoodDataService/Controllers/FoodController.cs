@@ -1,4 +1,4 @@
-﻿using FoodDataService.Services;
+﻿using FoodDataService.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -11,7 +11,7 @@ namespace FoodDataService.Controllers
 
         public FoodController(IConfiguration configuration)
         {
-            _foodData = new FoodDataRepository(configuration);
+            _foodData = new FoodDataRepository();
         }
 
         [HttpGet]
@@ -19,6 +19,12 @@ namespace FoodDataService.Controllers
         public IActionResult Description(string ndbNo)
         {
             var description = _foodData.GetFoodDescriptionByNdbNo(ndbNo);
+
+            if (description == null)
+            {
+                return NotFound();
+            }
+
             return Ok(description);
         }
     }

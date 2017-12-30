@@ -13,7 +13,7 @@ namespace FoodDataService
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; set; }
+        public static IConfiguration Configuration { get; set; }
 
         public Startup(IConfiguration configuration)
         {

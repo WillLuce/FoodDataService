@@ -19,7 +19,7 @@ namespace FoodDataService.Models
         public string comname { get; set; }
         public string manufacname { get; set; }
         public string survey { get; set; }
-        public string refdesc { get; set; }
+        public string ref_desc { get; set; }
         public decimal? refuse { get; set; }
         public char? sciname { get; set; }
         public decimal? n_factor { get; set; }
