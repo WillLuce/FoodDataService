@@ -2,7 +2,7 @@
 
 namespace FoodDataService.Models
 {
-    public class FoodDescription
+    public class FoodDescriptionResponse
     {
         [Key]
         public string ndb_no { get; set; }
@@ -21,7 +21,7 @@ namespace FoodDataService.Models
         public string survey { get; set; }
         public string ref_desc { get; set; }
         public decimal? refuse { get; set; }
-        public char? sciname { get; set; }
+        public string sciname { get; set; }
         public decimal? n_factor { get; set; }
         public decimal? pro_factor { get; set; }
         public decimal? fat_factor { get; set; }

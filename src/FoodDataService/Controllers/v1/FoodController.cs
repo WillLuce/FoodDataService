@@ -1,21 +1,22 @@
 ﻿using FoodDataService.Data;
+using FoodDataService.Utils;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodDataService.Controllers
+namespace FoodDataService.Controllers.v1
 {
-    [Route("food")]
+    [Route("v1/food")]
     public class FoodController : Controller
     {
         private readonly FoodDataRepository _foodData;
 
-        public FoodController()
+        public FoodController(FoodDataRepository foodDataRepository)
         {
-            _foodData = new FoodDataRepository();
+            _foodData = foodDataRepository;
         }
 
         [HttpGet]
-        [Route("description/{ndbNo}")]
-        public IActionResult Description(string ndbNo)
+        [Route("{ndbNo}")]
+        public IActionResult GetFoodDescriptionByNdbNo(string ndbNo)
         {
             var description = _foodData.GetFoodDescriptionByNdbNo(ndbNo);
 
@@ -24,7 +25,7 @@ namespace FoodDataService.Controllers
                 return NotFound();
             }
 
-            return Ok(description);
+            return Ok(description.ToFoodDescriptionResponse());
         }
     }
 }
